@@ -108,12 +108,27 @@ public class BST {
      * </p>
      * Precondition: this tree is *non-empty*. */
     private int extractMax() {
-        return -1;
+        if (this.right.isEmpty()) {
+            Integer max_item = this.root;
+            // "Promote" the left subtree
+            this.root = this.left.root;
+            this.right = this.left.right;
+            this.left = this.left.left;
+            return max_item;
+        } else {
+            return this.right.extractMax();
+        }
     }
 
+    /** Return the height of this BST. */
     public int height() {
-        return -1;
+        if (this.isEmpty()) {
+            return 0;
+        } else {
+            return Math.max(this.left.height(), this.right.height()) + 1;
+        }
     }
+
 
     public int count(int item) {
         return -1;
