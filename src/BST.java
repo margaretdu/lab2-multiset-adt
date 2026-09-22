@@ -27,11 +27,12 @@ public class BST {
         // left and right default to being null
     }
 
-
+    /** Return whether this BST is empty. */
     public boolean isEmpty() {
-        return false; // TODO implement me!
+        return this.root == null;
     }
 
+    /** Return whether <item> is in this BST. */
     public boolean contains(int item) {
         // provided as an example
         if (this.isEmpty()) {
@@ -45,12 +46,23 @@ public class BST {
 
     }
 
-
+    /** Insert <item> into this tree. */
     public void insert(int item) {
-
+        if (this.isEmpty()) {
+            this.root = item;
+            this.left = new BST();
+            this.right = new BST();
+        } else if (item <= this.root){
+            this.left.insert(item);
+        } else {
+            this.right.insert(item);
+        }
     }
 
-
+    /**
+     * Remove *one* occurrence of <item> from this BST.
+     * Do nothing if <item> is not in the BST.
+     */
     public void delete(int item) {
 
     }
