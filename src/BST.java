@@ -29,7 +29,7 @@ public class BST {
 
     /** Return whether this BST is empty. */
     public boolean isEmpty() {
-        return this.root == null;
+        return root == null;
     }
 
     /** Return whether {@code item} is in this BST. */
@@ -37,12 +37,12 @@ public class BST {
         // provided as an example
         if (this.isEmpty()) {
             return false;
-        } else if (item == this.root) {
+        } else if (item == root) {
             return true;
-        } else if (item < this.root) {
-            return this.left.contains(item);
+        } else if (item < root) {
+            return left.contains(item);
         }
-        return this.right.contains(item);
+        return right.contains(item);
 
     }
 
@@ -50,13 +50,13 @@ public class BST {
     public void insert(int item) {
         if (this.isEmpty()) {
             // Make new leaf
-            this.root = item;
-            this.left = new BST();
-            this.right = new BST();
-        } else if (item <= this.root){
-            this.left.insert(item);
+            root = item;
+            left = new BST();
+            right = new BST();
+        } else if (item <= root){
+            left.insert(item);
         } else {
-            this.right.insert(item);
+            right.insert(item);
         }
     }
 
@@ -65,12 +65,12 @@ public class BST {
      * Do nothing if {@code item} is not in the BST. */
     public void delete(int item) {
         if (!this.isEmpty()) {
-            if (this.root == item) {
+            if (root == item) {
                 this.deleteRoot();
-            } else if (item < this.root) {
-                this.left.delete(item);
+            } else if (item < root) {
+                left.delete(item);
             } else {
-                this.right.delete(item);
+                right.delete(item);
             }
         }
     }
@@ -80,25 +80,25 @@ public class BST {
      * <p>
      * Precondition: this tree is *non-empty*. */
     private void deleteRoot() {
-        if (this.left.isEmpty() && this.right.isEmpty()) {
-            this.root = null;
-            this.left = null;
-            this.right = null;
-        } else if (this.left.isEmpty()) {
+        if (left.isEmpty() && right.isEmpty()) {
+            root = null;
+            left = null;
+            right = null;
+        } else if (left.isEmpty()) {
             // "Promote" the right subtree.
-            this.root = this.right.root;
-            this.left = this.right.left;
-            this.right = this.right.right;
-        } else if (this.right.isEmpty()) {
+            root = right.root;
+            left = right.left;
+            right = right.right;
+        } else if (right.isEmpty()) {
             // "Promote" the left subtree
-            this.root = this.left.root;
-            this.right = this.left.right;
-            this.left = this.left.left;
+            root = left.root;
+            right = left.right;
+            left = left.left;
         } else {
             // Both subtrees are non-empty. Can choose to replace the root
             // from either the max value of the left subtree, or the min value
             // of the right subtree.
-            this.root = this.left.extractMax();
+            root = left.extractMax();
         }
     }
 
@@ -107,15 +107,15 @@ public class BST {
      * <p>
      * Precondition: this tree is *non-empty*. */
     private int extractMax() {
-        if (this.right.isEmpty()) {
-            Integer max_item = this.root;
+        if (right.isEmpty()) {
+            Integer max_item = root;
             // "Promote" the left subtree
-            this.root = this.left.root;
-            this.right = this.left.right;
-            this.left = this.left.left;
+            root = left.root;
+            right = left.right;
+            left = left.left;
             return max_item;
         } else {
-            return this.right.extractMax();
+            return right.extractMax();
         }
     }
 
@@ -124,7 +124,7 @@ public class BST {
         if (this.isEmpty()) {
             return 0;
         } else {
-            return Math.max(this.left.height(), this.right.height()) + 1;
+            return Math.max(left.height(), right.height()) + 1;
         }
     }
 
@@ -133,12 +133,12 @@ public class BST {
     public int count(int item) {
         if (this.isEmpty()) {
             return 0;
-        } else if (this.root > item) {
-            return this.left.count(item);
-        } else if (this.root.equals(item)) {
-            return 1 + this.left.count(item) + this.right.count(item);
+        } else if (root > item) {
+            return left.count(item);
+        } else if (root.equals(item)) {
+            return 1 + left.count(item) + right.count(item);
         } else {
-            return this.right.count(item);
+            return right.count(item);
         }
     }
 
@@ -147,7 +147,7 @@ public class BST {
         if (this.isEmpty()) {
             return 0;
         } else {
-            return 1 + this.left.getSize() + this.right.getSize();
+            return 1 + left.getSize() + right.getSize();
         }
     }
 
