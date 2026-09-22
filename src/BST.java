@@ -49,6 +49,7 @@ public class BST {
     /** Insert {@code item} into this tree. */
     public void insert(int item) {
         if (this.isEmpty()) {
+            // Make new leaf
             this.root = item;
             this.left = new BST();
             this.right = new BST();
@@ -61,9 +62,7 @@ public class BST {
 
     /**
      * Remove *one* occurrence of {@code item} from this BST.
-     * Do nothing if {@code item} is not in the BST.
-     */
-
+     * Do nothing if {@code item} is not in the BST. */
     public void delete(int item) {
         if (!this.isEmpty()) {
             if (this.root == item) {
@@ -78,7 +77,7 @@ public class BST {
 
     /**
      * Remove the root of this tree.
-     * </p>
+     * <p>
      * Precondition: this tree is *non-empty*. */
     private void deleteRoot() {
         if (this.left.isEmpty() && this.right.isEmpty()) {
@@ -105,7 +104,7 @@ public class BST {
 
     /**
      * Remove and return the maximum item stored in this tree.
-     * </p>
+     * <p>
      * Precondition: this tree is *non-empty*. */
     private int extractMax() {
         if (this.right.isEmpty()) {
