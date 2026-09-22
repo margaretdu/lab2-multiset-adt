@@ -32,7 +32,7 @@ public class BST {
         return this.root == null;
     }
 
-    /** Return whether <item> is in this BST. */
+    /** Return whether {@code item} is in this BST. */
     public boolean contains(int item) {
         // provided as an example
         if (this.isEmpty()) {
@@ -46,7 +46,7 @@ public class BST {
 
     }
 
-    /** Insert <item> into this tree. */
+    /** Insert {@code item} into this tree. */
     public void insert(int item) {
         if (this.isEmpty()) {
             this.root = item;
@@ -60,9 +60,10 @@ public class BST {
     }
 
     /**
-     * Remove *one* occurrence of <item> from this BST.
-     * Do nothing if <item> is not in the BST.
+     * Remove *one* occurrence of {@code item} from this BST.
+     * Do nothing if {@code item} is not in the BST.
      */
+
     public void delete(int item) {
         if (!this.isEmpty()) {
             if (this.root == item) {
@@ -77,6 +78,7 @@ public class BST {
 
     /**
      * Remove the root of this tree.
+     * </p>
      * Precondition: this tree is *non-empty*. */
     private void deleteRoot() {
         if (this.left.isEmpty() && this.right.isEmpty()) {
@@ -101,7 +103,10 @@ public class BST {
         }
     }
 
-
+    /**
+     * Remove and return the maximum item stored in this tree.
+     * </p>
+     * Precondition: this tree is *non-empty*. */
     private int extractMax() {
         return -1;
     }
